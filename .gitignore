@@ -1,0 +1,23 @@
+# Python virtual environment
+.venv/
+venv/
+ENV/
+env/
+
+# Python cache & compiles
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables / secrets
+.env
+
+# Output datasets
+Unihack_ Output.csv
+
+# IDEs & System files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
