@@ -212,7 +212,7 @@ def main():
         
     with open(INPUT_CSV, mode='r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
-        input_rows = list(reader)[:10]  # Only process the first 10 rows for testing
+        input_rows = list(reader)[:100]  # Only process the first 10 rows for testing
         
     # Open output file for writing/appending
     fieldnames = ["Mfg_Part_Num", "Part_Manuf", "Part_Desc", "MFR URL", "Ref URL 1", "Ref URL 2", "Ref URL 3"]
@@ -263,7 +263,14 @@ def main():
         print(f"[{idx+1}/{total_to_process}] Searching for: '{query}'")
         
         # Execute search
-        search_results = search_part_urls(query, max_results=4)
+        search_results = search_part_urls(query, max_results=6)
+        
+        # Filter out YouTube links and Wikipedia links
+        disallowed_domains = ['youtube.com', 'youtu.be', 'wikipedia.org']
+        search_results = [
+            r for r in search_results 
+            if not any(domain in r['href'].lower() for domain in disallowed_domains)
+        ]
         
         mfr_url = ""
         ref_urls = ["", "", ""]
