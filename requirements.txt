@@ -1,3 +1,0 @@
-ddgs
-python-dotenv
-google-generativeai
